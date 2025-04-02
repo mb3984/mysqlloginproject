@@ -1,23 +1,35 @@
 import express from "express";
 import dotenv from "dotenv";
-dotenv.config();
+import path from "path";
+import { fileURLToPath } from "url";
 import cors from "cors";
 import authRouter from "./routes/authRoutes.js";
-const port = process.env.port || 2000;
 
+// Load environment variables
+dotenv.config();
+
+const port = process.env.PORT || 2000;
 const app = express();
-app.use(
-  cors({
-    origin: "*",
-    methods: ["GET", "POST"],
-  })
-);
+
+// Middleware
+app.use(cors());
 app.use(express.json());
+
+// Backend API Routes
 app.use("/auth", authRouter);
-app.get("/", (req, res) => {
-  console.log("req.body");
+
+// Serve Frontend Static Files
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const frontendPath = path.join(__dirname, "../frontend/dist");
+
+app.use(express.static(frontendPath));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(frontendPath, "index.html"));
 });
 
+// Start Server
 app.listen(port, () => {
-  console.log(`Server is Running on ${port}`);
+  console.log(`✅ Server is Running on port ${port}`);
 });
