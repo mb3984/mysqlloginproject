@@ -2,8 +2,7 @@
   "name": "fullstack-project",
   "private": true,
   "scripts": {
-    "install": "cd backend && npm install && cd ../frontend && npm install",
     "build": "cd frontend && npm run build",
-    "start": "cd backend && npm start"
+    "start": "cd backend && npm start & cd frontend && npm run dev"
   }
 }
