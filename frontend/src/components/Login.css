@@ -6,6 +6,12 @@
   height: 100vh;
   background-color: #f9f9f9;
 }
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
 /* Login box styles */
 .login-box {
