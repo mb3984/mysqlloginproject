@@ -15,7 +15,7 @@ const __dirname = path.dirname(__filename);
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use("/auth", authRouter);
 
 // Serve React frontend
