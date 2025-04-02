@@ -1,10 +1,14 @@
 import express from "express";
 import path from "path";
+import dotenv from "dotenv";
+dotenv.config({ path: path.resolve("../.env") });
+import authRouter from "./routes/authRoutes.js";
+
 import { fileURLToPath } from "url";
 import cors from "cors";
 
 const app = express();
-const PORT = process.env.PORT || 2000;
+const PORT = process.env.port || 2000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,6 +16,7 @@ const __dirname = path.dirname(__filename);
 // Middleware
 app.use(express.json());
 app.use(cors());
+app.use("/auth", authRouter);
 
 // Serve React frontend
 if (process.env.NODE_ENV === "production") {
