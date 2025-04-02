@@ -1,5 +1,0 @@
-{
-  "watch": ["server", "routes", "models"],
-  "ignore": ["frontend/*", "node_modules"],
-  "ext": "js,json"
-}
